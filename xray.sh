@@ -1,6 +1,9 @@
-#!/bin/sh
 
-UUID=d59f3d5a-5c44-4aa1-a690-fc34b83de6ad
+if [ ! -f UUID ]; then
+	cat /proc/sys/kernel/random/uuid > UUID
+fi
+
+UUID=$(cat UUID)
 
 # Set config.json
 sed -i "s/PORT/$PORT/g" /etc/xray/config.json
